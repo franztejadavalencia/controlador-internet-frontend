@@ -1,1 +1,59 @@
-<p>subscription-form.component works!</p>
+@if (subscription) {
+  <h1 mat-dialog-title>EDITAR SUBSCRIPCIÓN</h1>
+} @else {
+  <h1 mat-dialog-title>NUEVO SUBSCRIPCIÓN</h1>
+}
+<mat-dialog-content [formGroup]="formSubscription" class="content-form">
+
+  <app-autocomplete-object
+    [label]="'Clientes'"
+    [control]="controlIdClient"
+    [options]="clients"
+    [displayWithFn]="displayClient"
+    [getIdFn]="getIdClient"
+    [idRequired]="true"
+    [hideSubText]="false"
+  />
+
+  <app-autocomplete-object
+    [label]="'Planes'"
+    [control]="controlIdPlan"
+    [options]="plans"
+    [displayWithFn]="displayPlan"
+    [getIdFn]="getIdPlan"
+    [idRequired]="true"
+    [hideSubText]="false"
+  />
+
+  <app-autocomplete-object
+    [label]="'Estado'"
+    [control]="controlIdSubscriptionStatus"
+    [options]="subscriptionStatus"
+    [displayWithFn]="displaySubscriptionStatus"
+    [getIdFn]="getIdSubscriptionStatus"
+    [idRequired]="true"
+    [hideSubText]="false"
+  />
+
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button
+    mat-raised-button
+    (click)="onConfirmSave()"
+    class="boton-form-aceptar"
+  >
+    @if (subscription) {
+      Guardar cambios
+    } @else {
+      Crear
+    }
+  </button>
+  <button
+    mat-raised-button
+    (click)="onConfirmClose()"
+    cdkFocusInitial
+    class="boton-form-cancelar"
+  >
+    Cancelar
+  </button>
+</mat-dialog-actions>

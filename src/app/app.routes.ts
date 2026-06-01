@@ -32,6 +32,10 @@ export const routes: Routes = [
         loadComponent: () => import('./modules/billing/components/subscription/subscription.component').then(m => m.SubscriptionComponent),
       },
       {
+        path: 'network/network-details',
+        loadComponent: () => import('./modules/network/components/network-detail/network-detail.component').then(m => m.NetworkDetailComponent),
+      },
+      {
         path: '',
         redirectTo: 'dashboard',
         pathMatch: 'full',

@@ -1,85 +1,84 @@
 <div class="grid-dos">
-    <mat-toolbar class="mat-toolbar-title">
-      <div>
-        <h1>GESTIÓN DE CLIENTES</h1>
-      </div>
-    </mat-toolbar>
-    <div></div>
-    <mat-form-field class="ocultar-subtexto">
-      <mat-label>Buscar...</mat-label>
-      <input matInput type="text" [formControl]="inputSearch" />
-      @if (inputSearch.value) {
-        <button matSuffix mat-icon-button (click)="clearSearch()">
-          <mat-icon>close</mat-icon>
+  <mat-toolbar class="mat-toolbar-title">
+    <div>
+      <h1>GESTIÓN DE CLIENTES</h1>
+    </div>
+  </mat-toolbar>
+  <div></div>
+  <mat-form-field class="ocultar-subtexto">
+    <mat-label>Buscar...</mat-label>
+    <input matInput type="text" [formControl]="inputSearch" />
+    @if (inputSearch.value) {
+      <button matSuffix mat-icon-button (click)="clearSearch()">
+        <mat-icon>close</mat-icon>
+      </button>
+    }
+  </mat-form-field>
+  <div></div>
+</div>
+<br />
+<table
+  mat-table
+  [dataSource]="dsClient"
+  matSort
+  matSortDisableClear
+  matSortActive="firstName"
+  matSortDirection="asc"
+>
+  <tr mat-header-row *matHeaderRowDef="columns"></tr>
+  <tr mat-row *matRowDef="let row; columns: columns" class="fila-tabla"></tr>
+
+  <ng-container matColumnDef="firstName">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Nombres</th>
+    <td mat-cell *matCellDef="let row" class="lighter">
+      {{ row.person.firstName }}
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="lastName">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Apellidos</th>
+    <td mat-cell *matCellDef="let row" class="lighter">
+      {{ row.person.lastName }}
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="clientType">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Tipo</th>
+    <td mat-cell *matCellDef="let row" class="lighter">
+      {{ row.clientType.name }}
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="actions">
+    <th mat-header-cell *matHeaderCellDef>
+      <div class="columna-acciones-titulo">
+        <span>ACCIONES</span>
+        <button
+          mat-icon-button
+          color="primary"
+          (click)="openClientDialog(null)"
+        >
+          <mat-icon>add_circle</mat-icon>
         </button>
-      }
-    </mat-form-field>
-    <div></div>
-  </div>
-  <br />
-  <table
-    mat-table
-    [dataSource]="dsClient"
-    matSort
-    matSortDisableClear
-    matSortActive="firstName"
-    matSortDirection="asc"
-  >
-    <tr mat-header-row *matHeaderRowDef="columns"></tr>
-    <tr mat-row *matRowDef="let row; columns: columns" class="fila-tabla"></tr>
-  
-    <ng-container matColumnDef="firstName">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Nombres</th>
-      <td mat-cell *matCellDef="let row" class="lighter">
-        {{ row.person.firstName }}
-      </td>
-    </ng-container>
-  
-    <ng-container matColumnDef="lastName">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Apellidos</th>
-      <td mat-cell *matCellDef="let row" class="lighter">
-        {{ row.person.lastName }}
-      </td>
-    </ng-container>
-  
-    <ng-container matColumnDef="clientType">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Tipo</th>
-      <td mat-cell *matCellDef="let row" class="lighter">
-        {{ row.clientType.name }}
-      </td>
-    </ng-container>
-  
-    <ng-container matColumnDef="actions">
-      <th mat-header-cell *matHeaderCellDef>
-        <div class="columna-acciones-titulo">
-          <span>ACCIONES</span>
-          <button
-            mat-icon-button
-            color="primary"
-            (click)="openClientDialog(null)"
-          >
-            <mat-icon>add_circle</mat-icon>
-          </button>
-        </div>
-      </th>
-      <td mat-cell *matCellDef="let row">
-        <div class="columna-acciones">
-          <button mat-icon-button (click)="openClientDialog(row)">
-            <mat-icon>edit</mat-icon>
-          </button>
-          <button
-            mat-icon-button
-            (click)="onConfirmDeleteClient(row.idClient)"
-          >
-            <mat-icon>delete</mat-icon>
-          </button>
-        </div>
-      </td>
-    </ng-container>
-  </table>
-  <mat-paginator
-    [pageSize]="10"
-    [pageSizeOptions]="[10, 20, 50]"
-    [showFirstLastButtons]="true"
-  />
-  
+      </div>
+    </th>
+    <td mat-cell *matCellDef="let row">
+      <div class="columna-acciones">
+        <button mat-icon-button (click)="openClientDialog(row)">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button
+          mat-icon-button
+          (click)="onConfirmDeleteClient(row.idClient)"
+        >
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+    </td>
+  </ng-container>
+</table>
+<mat-paginator
+  [pageSize]="10"
+  [pageSizeOptions]="[10, 20, 50]"
+  [showFirstLastButtons]="true"
+/>

@@ -1,10 +1,11 @@
-import { Subscription } from "rxjs";
 import { Client } from "./client.model";
 import { Person } from "./person.model";
 import { Plan } from "./plan.model";
 import { Payment } from "./payment.model";
-import { NetworkDetails } from "./network-details.model";
+import { NetworkDetail } from "./network-detail.model";
 import { ClientType } from "./client-type.model";
+import { SubscriptionStatus } from "./subscription-status.model";
+import { Subscription } from "./subscription.model";
 
 export interface OutPerson {
   person: Person;
@@ -38,6 +39,9 @@ export interface OutSubscription {
 
 export interface InSubscription {
   subscription: Subscription;
+  clients: Client[];
+  plans: Plan[];
+  subscriptionStatus: SubscriptionStatus[];
 }
 
 export interface OutPayment {
@@ -49,9 +53,9 @@ export interface InPayment {
 }
 
 export interface OutNetworkDetails {
-  networkDetails: NetworkDetails;
+  networkDetail: NetworkDetail;
 }
 
 export interface InNetworkDetails {
-  networkDetails: NetworkDetails;
+  networkDetail: NetworkDetail;
 }

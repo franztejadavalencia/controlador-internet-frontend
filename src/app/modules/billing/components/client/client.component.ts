@@ -90,7 +90,6 @@ export class ClientComponent implements OnInit {
 
   async handleClientDialog(result: OutClient, client: Client | null) {
     Loading.circle(client ? MSG.LOAD.UPDATING : MSG.LOAD.SAVING);
-    console.log(result)
     const payload: CreateClientDto = {
       ...result.client,
     };
