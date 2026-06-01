@@ -1,0 +1,50 @@
+@if (client) {
+  <h1 mat-dialog-title>EDITAR CLIENTE</h1>
+} @else {
+  <h1 mat-dialog-title>NUEVO CLIENTE</h1>
+}
+<mat-dialog-content [formGroup]="formClient" class="content-form">
+  
+  <app-autocomplete-object
+    [label]="'Personas'"
+    [control]="controlIdPerson"
+    [options]="persons"
+    [displayWithFn]="displayPerson"
+    [getIdFn]="getIdPerson"
+    [idRequired]="true"
+    [hideSubText]="false"
+  />
+
+  <app-autocomplete-object
+    [label]="'Tipos'"
+    [control]="controlIdClientType"
+    [options]="clientTypes"
+    [displayWithFn]="displayClientType"
+    [getIdFn]="getIdClientType"
+    [idRequired]="true"
+    [hideSubText]="false"
+  />
+
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button
+    mat-raised-button
+    (click)="onConfirmSave()"
+    class="boton-form-aceptar"
+  >
+    @if (client) {
+      Guardar cambios
+    } @else {
+      Crear
+    }
+  </button>
+  <button
+    mat-raised-button
+    (click)="onConfirmClose()"
+    cdkFocusInitial
+    class="boton-form-cancelar"
+  >
+    Cancelar
+  </button>
+</mat-dialog-actions>
+  

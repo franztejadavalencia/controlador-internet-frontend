@@ -1,4 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -23,6 +24,7 @@ import { notifyApiError } from '../../../../shared/utils/error.util';
 @Component({
   selector: 'app-plan.component',
   imports: [
+    CommonModule,
     ReactiveFormsModule,
     MatInputModule,
     MatToolbarModule,
@@ -35,7 +37,7 @@ import { notifyApiError } from '../../../../shared/utils/error.util';
   templateUrl: './plan.component.html',
   styleUrl: './plan.component.scss',
 })
-export class PlanComponent {
+export class PlanComponent implements OnInit {
   private planService = inject(PlanService);
   readonly dialog = inject(MatDialog);
   dsPlan = new DataSourcePlan();

@@ -1,1 +1,48 @@
-<p>plan-form.component works!</p>
+@if (plan) {
+  <h1 mat-dialog-title>EDITAR PLAN</h1>
+} @else {
+  <h1 mat-dialog-title>NUEVO PLAN</h1>
+}
+<mat-dialog-content [formGroup]="formPlan" class="content-form">
+  <mat-form-field class="grid-dos-full">
+    <mat-label>Nombres</mat-label>
+    <input matInput type="text" formControlName="name" />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Velicidad de bajada</mat-label>
+    <input matInput type="number" step="1" formControlName="downloadSpeed" />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Velocidad de subida</mat-label>
+    <input matInput type="number" step="1" formControlName="uploadSpeed" />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Precio</mat-label>
+    <input matInput type="number" step="1" formControlName="price" />
+  </mat-form-field>
+  <mat-slide-toggle formControlName="isActive" class="centreado"
+    >Activo</mat-slide-toggle
+  >
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button
+    mat-raised-button
+    (click)="onConfirmSave()"
+    class="boton-form-aceptar"
+  >
+    @if (plan) {
+      Guardar cambios
+    } @else {
+      Crear
+    }
+  </button>
+  <button
+    mat-raised-button
+    (click)="onConfirmClose()"
+    cdkFocusInitial
+    class="boton-form-cancelar"
+  >
+    Cancelar
+  </button>
+</mat-dialog-actions>
+  

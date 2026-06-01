@@ -9,11 +9,15 @@ export const MSG = {
   ERROR: {
     GENERIC: 'Ha ocurrido un error inesperado. Intente de nuevo.',
     UNAUTHORIZED: 'No tienes permisos para realizar esta acción.',
-    CONNECTION: 'Error de conexión con el servidor.'
+    CONNECTION: 'Error de conexión con el servidor.',
+    FORM: 'Por favor, complete los campos requeridos',
   },
   CONFIRM: {
     EXIT: '¿Estás seguro de que deseas salir del sistema?',
-    DELETE: '¿Está seguro de eliminar este registro?'
+    CLOSE: '¿Está seguro de salir sin guardar los cambios?',
+    DELETE: '¿Está seguro de eliminar este registro?',
+    UPDATE: '¿Está seguro de guardar los cambios?',
+    ADD: '¿Está seguro de agregar este registro?',
   },
   LOAD: {
     AUTH: 'Autenticando...',

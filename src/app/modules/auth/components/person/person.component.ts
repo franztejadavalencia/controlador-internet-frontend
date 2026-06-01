@@ -35,7 +35,7 @@ import { notifyApiError } from '../../../../shared/utils/error.util';
   templateUrl: './person.component.html',
   styleUrl: './person.component.scss',
 })
-export class PersonComponent {
+export class PersonComponent implements OnInit {
   private personService = inject(PersonService);
   readonly dialog = inject(MatDialog);
   dsPerson = new DataSourcePerson();
@@ -59,6 +59,7 @@ export class PersonComponent {
   }
 
   async handlePersonDialog(result: OutPerson, person: Person | null) {
+    console.log(result);
     Loading.circle(person ? MSG.LOAD.UPDATING : MSG.LOAD.SAVING);
     const payload: CreatePersonDto = {
       ...result.person,

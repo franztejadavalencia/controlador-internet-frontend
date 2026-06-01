@@ -5,6 +5,11 @@ export enum SubscriptionStatus {
   CANCELADO = 'CANCELADO'
 }
 
+export enum ClientStatus {
+  ACTIVO = 'ACTIVO',
+  INACTIVO = 'INACTIVO',
+}
+
 export enum UserRoles {
   ADMIN = 'Administrador',
   CAJERO = 'Cajero',

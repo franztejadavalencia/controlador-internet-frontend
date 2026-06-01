@@ -24,6 +24,14 @@ export const routes: Routes = [
         loadComponent: () => import('./modules/billing/components/plan/plan.component').then(m => m.PlanComponent),
       },
       {
+        path: 'billing/clients',
+        loadComponent: () => import('./modules/billing/components/client/client.component').then(m => m.ClientComponent),
+      },
+      {
+        path: 'billing/subscriptions',
+        loadComponent: () => import('./modules/billing/components/subscription/subscription.component').then(m => m.SubscriptionComponent),
+      },
+      {
         path: '',
         redirectTo: 'dashboard',
         pathMatch: 'full',

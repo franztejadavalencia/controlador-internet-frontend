@@ -1,0 +1,25 @@
+<mat-form-field class="w-full" [ngClass]="{ 'ocultar-subtexto': hideSubText }">
+  <mat-label>{{ label }}</mat-label>
+  <input
+    type="text"
+    matInput
+    [formControl]="objectControl"
+    [matAutocomplete]="auto"
+    (blur)="onBlur()"
+  />
+  @if (objectControl.value) {
+    <button matSuffix mat-icon-button (click)="clearObjectControl()">
+      <mat-icon>close</mat-icon>
+    </button>
+  }
+
+  <mat-autocomplete
+    autoActiveFirstOption
+    #auto="matAutocomplete"
+    [displayWith]="displayFn"
+  >
+    @for (item of filteredOptions; track getIdFn(item)) {
+      <mat-option [value]="item">{{ displayWithFn(item) }}</mat-option>
+    }
+  </mat-autocomplete>
+</mat-form-field>

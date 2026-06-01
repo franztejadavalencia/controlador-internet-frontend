@@ -45,6 +45,7 @@ body {
   align-items: center;
   padding: 0 18px;
   background-color: var.$color-primario;
+  color: white;
 }
 
 .ocultar-subtexto .mat-mdc-form-field-subscript-wrapper {
@@ -80,4 +81,15 @@ body {
 
 .fila-tabla:hover {
   background-color: #f0f0f0;
+}
+
+.boton-form-aceptar {
+  width: 180px;
+  background-color: var.$color-primario !important;
+  color: white !important;
+}
+
+.boton-form-cancelar {
+  width: 180px;
+  color: #969696 !important;
 }

@@ -1,1 +1,45 @@
-<p>person-form.component works!</p>
+@if (person) {
+  <h1 mat-dialog-title>EDITAR PERSONA</h1>
+} @else {
+  <h1 mat-dialog-title>NUEVO PERSONA</h1>
+}
+<mat-dialog-content [formGroup]="formPerson" class="content-form">
+  <mat-form-field class="grid-dos-full">
+    <mat-label>Nombres</mat-label>
+    <input matInput type="text" formControlName="firstName" />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Apellidos</mat-label>
+    <input matInput type="text" formControlName="lastName" />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>CI</mat-label>
+    <input matInput type="text" formControlName="ci" />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Email</mat-label>
+    <input matInput type="text" formControlName="email" />
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button
+    mat-raised-button
+    (click)="onConfirmSave()"
+    class="boton-form-aceptar"
+  >
+    @if (person) {
+      Guardar cambios
+    } @else {
+      Crear
+    }
+  </button>
+  <button
+    mat-raised-button
+    (click)="onConfirmClose()"
+    cdkFocusInitial
+    class="boton-form-cancelar"
+  >
+    Cancelar
+  </button>
+</mat-dialog-actions>
+ 
