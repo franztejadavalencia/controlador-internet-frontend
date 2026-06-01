@@ -1,0 +1,69 @@
+<div class="h-screen flex flex-col">
+  <mat-toolbar color="primary" class="flex justify-between z-10 shadow-md">
+    <div class="flex items-center gap-4">
+      <button mat-icon-button (click)="sidenav.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span class="font-semibold tracking-wider">SIS704 - GESTIÓN WIFI</span>
+    </div>
+
+    <div class="flex items-center gap-2">
+      <span class="text-sm hidden sm:inline">{{ authService.currentUser()?.username }}</span>
+      <button mat-icon-button [matMenuTriggerFor]="userMenu">
+        <mat-icon>account_circle</mat-icon>
+      </button>
+      <mat-menu #userMenu="matMenu">
+        <button mat-menu-item>
+          <mat-icon>vpn_key</mat-icon>
+          <span>Cambiar Contraseña</span>
+        </button>
+        <button mat-menu-item>
+          <mat-icon>cached</mat-icon>
+          <span>Cambiar Rol</span>
+        </button>
+        <mat-divider></mat-divider>
+        <button mat-menu-item (click)="logout()">
+          <mat-icon class="text-red-500">logout</mat-icon>
+          <span>Salir</span>
+        </button>
+      </mat-menu>
+    </div>
+  </mat-toolbar>
+
+  <mat-sidenav-container class="flex-1">
+    <mat-sidenav #sidenav mode="side" opened class="w-64 border-r border-gray-200 bg-gray-50">
+      <mat-nav-list>
+        <div class="px-4 py-2 text-xs font-bold text-gray-400 uppercase tracking-widest">General</div>
+
+        <a mat-list-item routerLink="/dashboard" routerLinkActive="bg-blue-50 text-blue-700">
+          <mat-icon matListItemIcon>dashboard</mat-icon>
+          <span matListItemTitle>Dashboard</span>
+        </a>
+
+        <mat-expansion-panel [class.mat-elevation-z0]="true" class="bg-transparent">
+          <mat-expansion-panel-header class="px-4">
+            <mat-panel-title class="text-sm font-medium">
+              <mat-icon class="mr-3 text-gray-500">payments</mat-icon>
+              ADMINISTRACIÓN
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <mat-nav-list class="pl-4">
+            <a mat-list-item routerLink="/auth/persons" class="h-10">Personas</a>
+            <a mat-list-item routerLink="/billing/plans" class="h-10">Planes</a>
+            <a mat-list-item routerLink="/billing/clients" class="h-10">Clientes</a>
+            <a mat-list-item routerLink="/billing/subscriptions" class="h-10">Subscripciones</a>
+            <a mat-list-item routerLink="/network/network-details" class="h-10">Equipos</a>
+            <a mat-list-item routerLink="/billing/payments" class="h-10">Pagos</a>
+          </mat-nav-list>
+        </mat-expansion-panel>
+
+      </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content class="bg-gray-100 p-6">
+      <div class="max-w-7xl mx-auto">
+        <router-outlet></router-outlet>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

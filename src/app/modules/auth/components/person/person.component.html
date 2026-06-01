@@ -1,0 +1,164 @@
+<div class="grid-dos">
+  <mat-toolbar class="mat-toolbar-title">
+    <div>
+      <h1>GESTIÓN DE PERSONAS</h1>
+    </div>
+  </mat-toolbar>
+  <div></div>
+  <mat-form-field class="ocultar-subtexto">
+    <mat-label>Buscar...</mat-label>
+    <input matInput type="text" [formControl]="inputSearch" />
+    @if (inputSearch.value) {
+      <button matSuffix mat-icon-button (click)="clearSearch()">
+        <mat-icon>close</mat-icon>
+      </button>
+    }
+  </mat-form-field>
+  <div></div>
+</div>
+<br />
+<table
+  mat-table
+  [dataSource]="dsPerson"
+  matSort
+  matSortDisableClear
+  matSortActive="firstName"
+  matSortDirection="asc"
+>
+  <tr mat-header-row *matHeaderRowDef="columns"></tr>
+  <tr mat-row *matRowDef="let row; columns: columns" class="fila-tabla"></tr>
+
+  <ng-container matColumnDef="firstName">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Nombres</th>
+    <td mat-cell *matCellDef="let row" class="lighter">
+      {{ row.firstName }}
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="lastName">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Apellidos</th>
+    <td mat-cell *matCellDef="let row" class="lighter">
+      {{ row.lastName }}
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="ci">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>CI</th>
+    <td mat-cell *matCellDef="let row" class="lighter">{{ row.ci }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="email">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Email</th>
+    <td mat-cell *matCellDef="let row" class="lighter">
+      {{ row.email }}
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="actions">
+    <th mat-header-cell *matHeaderCellDef>
+      <div class="columna-acciones-titulo">
+        <span>ACCIONES</span>
+        <button
+          mat-icon-button
+          color="primary"
+          (click)="openPersonaDialog(null)"
+        >
+          <mat-icon>add_circle</mat-icon>
+        </button>
+      </div>
+    </th>
+    <td mat-cell *matCellDef="let row">
+      <div class="columna-acciones">
+        <button mat-icon-button (click)="openPersonaDialog(row)">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button
+          mat-icon-button
+          (click)="onConfirmDeletePersona(row.id_persona)"
+        >
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+    </td>
+  </ng-container>
+</table>
+<mat-paginator
+  [pageSize]="10"
+  [pageSizeOptions]="[10, 20, 50]"
+  [showFirstLastButtons]="true"
+/>
+
+<!-- <div class="flex flex-col gap-6 p-4">
+  <header class="flex justify-between items-center">
+    <h1 class="text-2xl font-bold text-gray-800 tracking-tight">Gestión de Personas</h1>
+  </header>
+
+  <div class="w-full max-w-md">
+    <mat-form-field class="w-full no-subscript">
+      <mat-label>Buscar persona...</mat-label>
+      <input matInput [formControl]="inputSearch" placeholder="Nombre, CI o Email">
+      <mat-icon matPrefix class="mr-2 text-gray-400">search</mat-icon>
+      @if (inputSearch.value) {
+        <button mat-icon-button matSuffix (click)="clearSearch()">
+          <mat-icon>close</mat-icon>
+        </button>
+      }
+    </mat-form-field>
+  </div>
+
+  <div class="mat-elevation-z2 rounded-lg overflow-hidden bg-white">
+    <table mat-table [dataSource]="dsPerson" class="w-full">
+
+      <ng-container matColumnDef="firstName">
+        <th mat-header-cell *matHeaderCellDef class="font-bold text-gray-700">Nombres</th>
+        <td mat-cell *matCellDef="let element"> {{element.firstName}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="lastName">
+        <th mat-header-cell *matHeaderCellDef class="font-bold text-gray-700">Apellidos</th>
+        <td mat-cell *matCellDef="let element"> {{element.lastName}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="ci">
+        <th mat-header-cell *matHeaderCellDef class="font-bold text-gray-700">Documento (CI)</th>
+        <td mat-cell *matCellDef="let element"> {{element.ci}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef class="font-bold text-gray-700">Correo Electrónico</th>
+        <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef class="text-right">
+          <div class="flex items-center justify-end gap-2 uppercase font-bold text-xs tracking-widest text-gray-500">
+            Acciones
+            <button mat-mini-fab color="primary" (click)="openPersonaDialog(null)" aria-label="Agregar persona">
+              <mat-icon>add</mat-icon>
+            </button>
+          </div>
+        </th>
+        <td mat-cell *matCellDef="let element" class="text-right">
+          <div class="flex justify-end gap-1">
+            <button mat-icon-button color="accent" (click)="openPersonaDialog(element)" title="Editar">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button color="warn" (click)="onConfirmDeletePersona(element.idPerson)" title="Eliminar">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="columns.concat('actions')"></tr>
+      <tr mat-row *matRowDef="let row; columns: columns.concat('actions');"
+          class="hover:bg-gray-50 transition-colors"></tr>
+
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell p-8 text-center text-gray-500" [attr.colspan]="columns.length + 1">
+          No se encontraron personas con el criterio "{{inputSearch.value}}"
+        </td>
+      </tr>
+    </table>
+  </div>
+</div> -->

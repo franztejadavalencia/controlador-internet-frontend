@@ -1,46 +1,83 @@
-// Include theming for Angular Material with `mat.theme()`.
-// This Sass mixin will define CSS variables that are used for styling Angular Material
-// components according to the Material 3 design spec.
-// Learn more about theming and how to use it for your application's
-// custom components at https://material.angular.dev/guide/theming
 @use '@angular/material' as mat;
+@use 'assets/styles/_variables.scss' as var;
 
 html {
-  @include mat.theme(
-    (
-      color: (
-        primary: mat.$azure-palette,
-        tertiary: mat.$blue-palette,
-      ),
-      typography: Roboto,
-      density: 0,
-    )
-  );
+  @include mat.theme((
+    color: (
+      primary: mat.$azure-palette,
+      tertiary: mat.$blue-palette,
+    ),
+    typography: Roboto,
+    density: 0,
+  ));
 }
-
-body {
-  // Default the application to a light color theme. This can be changed to
-  // `dark` to enable the dark color theme, or to `light dark` to defer to the
-  // user's system settings.
-  color-scheme: light;
-
-  // Set a default background, font and text colors for the application using
-  // Angular Material's system-level CSS variables. Learn more about these
-  // variables at https://material.angular.dev/guide/system-variables
-  background-color: var(--mat-sys-surface);
-  color: var(--mat-sys-on-surface);
-  font: var(--mat-sys-body-medium);
-
-  // Reset the user agent margin.
-  margin: 0;
-}
-/* You can add global styles to this file, and also import other style files */
 
 html,
 body {
   height: 100%;
 }
+
 body {
+  color-scheme: light;
+  background-color: var(--mat-sys-surface);
+  color: var(--mat-sys-on-surface);
+  font: var(--mat-sys-body-medium);
   margin: 0;
   font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
+
+.grid-dos {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: start;
+  gap: 4px;
+}
+
+.mat-toolbar-title {
+  padding: 0 !important;
+}
+
+.mat-toolbar-title div {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0 18px;
+  background-color: var.$color-primario;
+}
+
+.ocultar-subtexto .mat-mdc-form-field-subscript-wrapper {
+  display: none !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.lighter {
+  font-size: 0.875rem;
+  line-height: 1rem;
+  font-weight: lighter;
+  opacity: 0.8;
+}
+
+.columna-acciones-titulo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.columna-acciones {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fila-seleccionable {
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.fila-tabla:hover {
+  background-color: #f0f0f0;
 }
