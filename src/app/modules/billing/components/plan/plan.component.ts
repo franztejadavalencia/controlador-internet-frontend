@@ -8,20 +8,20 @@ import { MatInputModule } from '@angular/material/input';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
-import { PersonService } from '../../../../core/services/person.service';
-import { DataSourcePerson } from './data-source-person';
+import { PlanService } from '../../../../core/services/plan.service';
+import { DataSourcePlan } from './data-source-plan';
 import { debounceTime, firstValueFrom } from 'rxjs';
-import { OutPerson } from '../../../../core/models/dialog-data.model';
+import { OutPlan } from '../../../../core/models/dialog-data.model';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { Loading } from 'notiflix/build/notiflix-loading-aio';
 import { MSG } from '../../../../core/constants/messages.constants';
-import { CreatePersonDto, Person } from '../../../../core/models/person.model';
-import { PersonFormComponent } from '../../pages/person-form/person-form.component';
+import { CreatePlanDto, Plan } from '../../../../core/models/plan.model';
+import { PlanFormComponent } from '../../pages/plan-form/plan-form.component';
 import { Confirm } from 'notiflix';
 import { notifyApiError } from '../../../../shared/utils/error.util';
 
 @Component({
-  selector: 'app-person.component',
+  selector: 'app-plan.component',
   imports: [
     ReactiveFormsModule,
     MatInputModule,
@@ -32,73 +32,73 @@ import { notifyApiError } from '../../../../shared/utils/error.util';
     MatButtonModule,
     MatPaginator,
   ],
-  templateUrl: './person.component.html',
-  styleUrl: './person.component.scss',
+  templateUrl: './plan.component.html',
+  styleUrl: './plan.component.scss',
 })
-export class PersonComponent {
-  private personService = inject(PersonService);
+export class PlanComponent {
+  private planService = inject(PlanService);
   readonly dialog = inject(MatDialog);
-  dsPerson = new DataSourcePerson();
+  dsPlan = new DataSourcePlan();
   inputSearch = new FormControl('', { nonNullable: true });
-  columns: string[] = ['firstName', 'lastName', 'ci', 'email', 'actions'];
+  columns: string[] = ['name', 'downloadSpeed', 'uploadSpeed', 'price', 'isActive', 'actions'];
 
   ngOnInit() {
-    this.getAllPerson();
+    this.getAllPlan();
     this.inputSearch.valueChanges.pipe(debounceTime(300)).subscribe((value) => {
-      this.dsPerson.find(value);
+      this.dsPlan.find(value);
     });
   }
 
-  getAllPerson() {
-    this.personService.getAll().subscribe({
+  getAllPlan() {
+    this.planService.getAll().subscribe({
       next: (res) => {
-        this.dsPerson.init(res);
+        this.dsPlan.init(res);
       },
       error: () => {},
     });
   }
 
-  async handlePersonDialog(result: OutPerson, person: Person | null) {
-    Loading.circle(person ? MSG.LOAD.UPDATING : MSG.LOAD.SAVING);
-    const payload: CreatePersonDto = {
-      ...result.person,
+  async handlePlanDialog(result: OutPlan, plan: Plan | null) {
+    Loading.circle(plan ? MSG.LOAD.UPDATING : MSG.LOAD.SAVING);
+    const payload: CreatePlanDto = {
+      ...result.plan,
     };
     try {
-      if (!person) {
-        await firstValueFrom(this.personService.create(payload));
+      if (!plan) {
+        await firstValueFrom(this.planService.create(payload));
       } else {
-        await firstValueFrom(this.personService.update(person.idPerson, payload));
+        await firstValueFrom(this.planService.update(plan.idPlan, payload));
       }
-      Notify.success(person ? MSG.SUCCESS.UPDATE : MSG.SUCCESS.ADD);
+      Notify.success(plan ? MSG.SUCCESS.UPDATE : MSG.SUCCESS.ADD);
     } catch (error) {
       notifyApiError(error);
     } finally {
       Loading.remove();
-      this.getAllPerson();
+      this.getAllPlan();
     }
   }
 
-  openPersonDialog(person: Person | null) {
-    const dialogRef = this.dialog.open(PersonFormComponent, {
+  openPlanDialog(plan: Plan | null) {
+    const dialogRef = this.dialog.open(PlanFormComponent, {
       disableClose: true,
       data: {
-        person,
+        plan,
       },
     });
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.handlePersonDialog(result as OutPerson, person);
+        this.handlePlanDialog(result as OutPlan, plan);
       }
     });
   }
 
-  onConfirmDeletePerson(id: Person['idPerson']) {
+  onConfirmDeletePlan(id: Plan['idPlan']) {
     Confirm.show(
       MSG.TITLE.CONFIRM,
       MSG.CONFIRM.DELETE,
       MSG.ACCEPT,
       MSG.CANCEL,
-      () => this.deletePerson(id),
+      () => this.deletePlan(id),
       () => {},
       {
         okButtonBackground: '#1d4ed8',
@@ -107,16 +107,16 @@ export class PersonComponent {
     );
   }
 
-  async deletePerson(id: Person['idPerson']) {
+  async deletePlan(id: Plan['idPlan']) {
     Loading.circle(MSG.LOAD.DELETING);
     try {
-      await firstValueFrom(this.personService.delete(id));
+      await firstValueFrom(this.planService.delete(id));
       Notify.success(MSG.SUCCESS.DELETE);
     } catch (error) {
       notifyApiError(error);
     } finally {
       Loading.remove();
-      this.getAllPerson();
+      this.getAllPlan();
     }
   }
 

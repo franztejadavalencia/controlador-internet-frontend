@@ -20,6 +20,10 @@ export const routes: Routes = [
         loadComponent: () => import('./modules/auth/components/person/person.component').then(m => m.PersonComponent),
       },
       {
+        path: 'billing/plans',
+        loadComponent: () => import('./modules/billing/components/plan/plan.component').then(m => m.PlanComponent),
+      },
+      {
         path: '',
         redirectTo: 'dashboard',
         pathMatch: 'full',

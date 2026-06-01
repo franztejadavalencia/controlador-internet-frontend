@@ -6,3 +6,7 @@ export interface Plan {
   price: number;
   isActive: boolean;
 }
+
+export interface CreatePlanDto extends Omit<Plan, 'idPlan'> {}
+
+export interface UpdatePlanDto extends Partial<CreatePlanDto> {}

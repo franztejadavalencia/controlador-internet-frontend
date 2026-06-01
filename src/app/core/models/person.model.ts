@@ -7,4 +7,5 @@ export interface Person {
 }
 
 export interface CreatePersonDto extends Omit<Person, 'idPerson'> {}
+
 export interface UpdatePersonDto extends Partial<CreatePersonDto> {}
