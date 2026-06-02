@@ -19,7 +19,12 @@ export class DataSourceClient extends DataSource<Client> {
 
   find(input: string) {
     const finded = this.originalData.filter((item) => {
-      const txt = `${item.person.firstName}-${item.person.lastName}-${item.clientType}`;
+      const txt = `
+        ${item.code}-
+        ${item.person?.firstName}-
+        ${item.person?.lastName}-
+        ${item.clientType}
+      `;
       return txt.toLowerCase().includes(input.toLowerCase());
     });
     this.length = finded.length;

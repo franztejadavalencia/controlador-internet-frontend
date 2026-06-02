@@ -50,7 +50,7 @@ export class ClientComponent implements OnInit {
   clientTypes: ClientType[] = [];
   dsClient = new DataSourceClient();
   inputSearch = new FormControl('', { nonNullable: true });
-  columns: string[] = ['firstName', 'lastName', 'clientType', 'actions'];
+  columns: string[] = ['code', 'name', 'clientType', 'actions'];
 
   ngOnInit() {
     this.getAllClient();

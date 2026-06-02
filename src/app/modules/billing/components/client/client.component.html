@@ -28,17 +28,17 @@
   <tr mat-header-row *matHeaderRowDef="columns"></tr>
   <tr mat-row *matRowDef="let row; columns: columns" class="fila-tabla"></tr>
 
-  <ng-container matColumnDef="firstName">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header>Nombres</th>
+  <ng-container matColumnDef="code">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Código</th>
     <td mat-cell *matCellDef="let row" class="lighter">
-      {{ row.person.firstName }}
+      {{ row.code }}
     </td>
   </ng-container>
 
-  <ng-container matColumnDef="lastName">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header>Apellidos</th>
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Nombre</th>
     <td mat-cell *matCellDef="let row" class="lighter">
-      {{ row.person.lastName }}
+      {{ row.person.firstName }} {{ row.person.lastName }}
     </td>
   </ng-container>
 

@@ -5,6 +5,7 @@ import { SubscriptionStatus } from "./subscription-status.model";
 
 export interface Subscription {
   idSubscription: number;
+  code: string;
   expirationDate: Date | string;
   idPlan: number;
   idClient: number;
@@ -15,6 +16,6 @@ export interface Subscription {
   networkDetail?: NetworkDetail;
 }
 
-export interface CreateSubscriptionDto extends Omit<Subscription, 'idSubscription'> {}
+export interface CreateSubscriptionDto extends Omit<Subscription, 'idSubscription' | 'code'> {}
 
 export interface UpdateSubscriptionDto extends Partial<Subscription> {}

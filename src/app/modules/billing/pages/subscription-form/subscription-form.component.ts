@@ -56,7 +56,7 @@ export class SubscriptionFormComponent {
   displayPlan = (p: Plan): string => p ? p?.name : '';
   getIdPlan = (p: Plan): any => p.idPlan;
 
-  displayClient = (p: Client): string => p ? `${p?.person.firstName} ${p?.person.lastName}` : '';
+  displayClient = (p: Client): string => p ? `${p?.person?.firstName} ${p?.person?.lastName}` : '';
   getIdClient = (p: Client): any => p.idClient;
 
   displaySubscriptionStatus = (p: SubscriptionStatus): string => p ? p.name : '';

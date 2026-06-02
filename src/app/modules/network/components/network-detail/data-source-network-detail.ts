@@ -20,10 +20,11 @@ export class DataSourceNetworkDetail extends DataSource<NetworkDetail> {
   find(input: string) {
     const finded = this.originalData.filter((item) => {
       const txt = `
-        ${item.subscription?.client?.person.firstName} ${item.subscription?.client?.person.lastName}
+        ${item.subscription?.client?.person?.firstName} ${item.subscription?.client?.person?.lastName}
         ${item.subscription?.plan?.name}-
         ${item.ipAddress}-
-        ${item.macAddress}
+        ${item.macAddress}-
+        ${item.deviceType}
       `;
       return txt.toLowerCase().includes(input.toLowerCase());
     });
