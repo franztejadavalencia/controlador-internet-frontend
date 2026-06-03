@@ -4,7 +4,11 @@
   <h1 mat-dialog-title>NUEVO CLIENTE</h1>
 }
 <mat-dialog-content [formGroup]="formClient" class="content-form">
-  
+  <mat-form-field class="w-full">
+    <mat-label>Código de Suscripción</mat-label>
+    <input matInput [disabled]="true" [formControl]="inputCode">
+  </mat-form-field>
+
   <app-autocomplete-object
     [label]="'Personas'"
     [control]="controlIdPerson"

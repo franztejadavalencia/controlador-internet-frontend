@@ -20,8 +20,7 @@ export class DataSourceSubscription extends DataSource<Subscription> {
   find(input: string) {
     const finded = this.originalData.filter((item) => {
       const txt = `
-        ${item.code}-
-        ${item.client?.person?.firstName} ${item.client?.person?.lastName}-
+        ${item.code} ${item.client?.person?.firstName} ${item.client?.person?.lastName}-
         ${item.plan?.name}-
         ${item.expirationDate}-
         ${item.subscriptionStatus?.name}`;

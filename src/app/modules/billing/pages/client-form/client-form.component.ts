@@ -50,6 +50,7 @@ export class ClientFormComponent {
   client!: Client | null;
   persons: Person[] = [];
   clientTypes: ClientType[] = [];
+  inputCode = new FormControl({ value: 'CLI-XXXX', disabled: true });
   displayPerson = (p: Person): string => p ? `${p?.firstName} ${p?.lastName}` : '';
   getIdPerson = (p: Person): any => p.idPerson;
 
@@ -69,6 +70,7 @@ export class ClientFormComponent {
         idPerson: this.client.idPerson,
         idClientType: this.client.idClientType,
       });
+      this.inputCode.setValue(this.client.code);
     }
   }
 

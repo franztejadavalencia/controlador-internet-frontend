@@ -52,6 +52,7 @@ export class SubscriptionFormComponent {
   clients: Client[] = [];
   plans: Plan[] = [];
   subscriptionStatus: SubscriptionStatus[] = [];
+  inputCode = new FormControl({ value: 'SUB-XXXX', disabled: true });
 
   displayPlan = (p: Plan): string => p ? p?.name : '';
   getIdPlan = (p: Plan): any => p.idPlan;
@@ -80,6 +81,7 @@ export class SubscriptionFormComponent {
         idSubscriptionStatus: +this.subscription.idSubscriptionStatus,
         expirationDate: this.subscription.expirationDate,
       });
+      this.inputCode.setValue(this.subscription.code);
     }
   }
 

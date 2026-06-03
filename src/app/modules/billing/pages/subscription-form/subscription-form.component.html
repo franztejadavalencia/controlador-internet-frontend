@@ -4,9 +4,13 @@
   <h1 mat-dialog-title>NUEVO SUBSCRIPCIÓN</h1>
 }
 <mat-dialog-content [formGroup]="formSubscription" class="content-form">
+  <mat-form-field class="w-full">
+    <mat-label>Código de Suscripción</mat-label>
+    <input matInput [disabled]="true" [formControl]="inputCode">
+  </mat-form-field>
 
   <app-autocomplete-object
-    [label]="'Clientes'"
+    [label]="'Cliente'"
     [control]="controlIdClient"
     [options]="clients"
     [displayWithFn]="displayClient"
@@ -16,7 +20,7 @@
   />
 
   <app-autocomplete-object
-    [label]="'Planes'"
+    [label]="'Plane'"
     [control]="controlIdPlan"
     [options]="plans"
     [displayWithFn]="displayPlan"

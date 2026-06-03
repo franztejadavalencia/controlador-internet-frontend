@@ -54,7 +54,7 @@ export class SubscriptionComponent implements OnInit {
   clients: Client[] = [];
   dsSubscription = new DataSourceSubscription();
   inputSearch = new FormControl('', { nonNullable: true });
-  columns: string[] = ['ClientCode', 'client', 'plan', 'SubscriptionCode', 'expirationDate', 'subscriptionStatus', 'actions'];
+  columns: string[] = ['client', 'plan', 'SubscriptionCode', 'expirationDate', 'subscriptionStatus', 'actions'];
 
   ngOnInit() {
     this.getAllSubscription();
