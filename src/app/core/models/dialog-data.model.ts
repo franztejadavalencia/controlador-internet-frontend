@@ -6,6 +6,7 @@ import { NetworkDetail } from "./network-detail.model";
 import { ClientType } from "./client-type.model";
 import { SubscriptionStatus } from "./subscription-status.model";
 import { Subscription } from "./subscription.model";
+import { DeviceType } from "./device-type.model";
 
 export interface OutPerson {
   person: Person;
@@ -58,4 +59,6 @@ export interface OutNetworkDetails {
 
 export interface InNetworkDetails {
   networkDetail: NetworkDetail;
+  subscriptions: Subscription[];
+  deviceTypes: DeviceType[];
 }

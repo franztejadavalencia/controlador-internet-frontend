@@ -5,9 +5,9 @@ export interface NetworkDetail {
   idNetworkDetail: number;
   idSubscription: number;
   deviceHostName: string;
-  idDeviceType: number;
   macAddress: string;
   ipAddress: string;
+  idDeviceType: number;
   subscription?: Subscription;
   deviceType?: DeviceType;
 }
