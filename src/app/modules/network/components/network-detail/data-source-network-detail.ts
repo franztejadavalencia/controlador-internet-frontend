@@ -20,6 +20,7 @@ export class DataSourceNetworkDetail extends DataSource<NetworkDetail> {
   find(input: string) {
     const finded = this.originalData.filter((item) => {
       const txt = `
+        ${item.subscription?.code}-
         ${item.deviceHostName}-
         ${item.deviceType?.name}-
         ${item.ipAddress}-

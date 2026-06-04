@@ -51,7 +51,14 @@ export class NetworkDetailComponent implements OnInit {
   deviceTypes: DeviceType[] = [];
   dsNetworkDetail = new DataSourceNetworkDetail();
   inputSearch = new FormControl('', { nonNullable: true });
-  columns: string[] = ['deviceHostName', 'deviceType', 'ipAddress', 'macAddress', 'actions'];
+  columns: string[] = [
+    'subscriptionCode',
+    'deviceHostName',
+    'deviceType',
+    'ipAddress',
+    'macAddress',
+    'actions',
+  ];
 
   ngOnInit() {
     this.getAllNetworkDetail();
@@ -70,7 +77,7 @@ export class NetworkDetailComponent implements OnInit {
       error: () => {},
     });
   }
-  
+
   getAllSubscription() {
     this.subscriptionService.getAll().subscribe({
       next: (res) => {
