@@ -36,6 +36,10 @@ export const routes: Routes = [
         loadComponent: () => import('./modules/network/components/network-detail/network-detail.component').then(m => m.NetworkDetailComponent),
       },
       {
+        path: 'billing/payments',
+        loadComponent: () => import('./modules/billing/components/payment/payment.component').then(m => m.PaymentComponent),
+      },
+      {
         path: '',
         redirectTo: 'dashboard',
         pathMatch: 'full',

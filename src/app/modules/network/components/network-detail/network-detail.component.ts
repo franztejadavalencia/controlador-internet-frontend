@@ -46,14 +46,14 @@ export class NetworkDetailComponent implements OnInit {
   private subscriptionService = inject(SubscriptionService);
   private deviceTypeService = inject(DeviceTypeService);
   readonly dialog = inject(MatDialog);
-  networkDetail: NetworkDetail[] = [];
+  // networkDetail: NetworkDetail[] = [];
   subscriptions: Subscription[] = [];
   deviceTypes: DeviceType[] = [];
   dsNetworkDetail = new DataSourceNetworkDetail();
   inputSearch = new FormControl('', { nonNullable: true });
   columns: string[] = [
     'subscriptionCode',
-    'deviceHostName',
+    'deviceHostname',
     'deviceType',
     'ipAddress',
     'macAddress',
@@ -72,7 +72,7 @@ export class NetworkDetailComponent implements OnInit {
   getAllNetworkDetail() {
     this.networkDetailService.getAll().subscribe({
       next: (res) => {
-        this.networkDetail = res;
+        this.dsNetworkDetail.init(res);
       },
       error: () => {},
     });

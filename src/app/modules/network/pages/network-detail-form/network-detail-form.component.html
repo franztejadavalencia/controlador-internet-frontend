@@ -1,1 +1,69 @@
-<p>network-detail-form.component works!</p>
+@if (networkDetail) {
+  <h1 mat-dialog-title>EDITAR UN EQUIPO</h1>
+} @else {
+  <h1 mat-dialog-title>NUEVO UN EQUIPO</h1>
+}
+<mat-dialog-content [formGroup]="formNetworkDetail" class="content-form">
+  <app-autocomplete-object
+    [label]="'Subscripciones'"
+    [control]="controlIdSubscription"
+    [options]="subscriptions"
+    [displayWithFn]="displaySubscription"
+    [getIdFn]="getIdSubscription"
+    [idRequired]="true"
+    [hideSubText]="false"
+  />
+
+  <app-autocomplete-object
+    [label]="'Tipos'"
+    [control]="controlIdDeviceType"
+    [options]="deviceTypes"
+    [displayWithFn]="displayDeviceType"
+    [getIdFn]="getIdDeviceType"
+    [idRequired]="true"
+    [hideSubText]="false"
+  />
+
+  <button mat-raised-button color="primary" (click)="openSelectDevice()" class="mb-4">
+    Seleccionar Dispositivo
+  </button>
+
+  <mat-form-field class="w-full">
+    <mat-label>Nombre del Dispositivo</mat-label>
+    <input matInput formControlName="deviceHostname">
+  </mat-form-field>
+
+  <mat-form-field class="w-full">
+    <mat-label>Dirección MAC</mat-label>
+    <input matInput formControlName="macAddress">
+  </mat-form-field>
+
+  <mat-form-field class="w-full">
+    <mat-label>Dirección IP</mat-label>
+    <input matInput formControlName="ipAddress">
+  </mat-form-field>
+  
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button
+    mat-raised-button
+    (click)="onConfirmSave()"
+    class="boton-form-aceptar"
+  >
+    @if (networkDetail) {
+      Guardar cambios
+    } @else {
+      Crear
+    }
+  </button>
+  <button
+    mat-raised-button
+    (click)="onConfirmClose()"
+    cdkFocusInitial
+    class="boton-form-cancelar"
+  >
+    Cancelar
+  </button>
+</mat-dialog-actions>
+  

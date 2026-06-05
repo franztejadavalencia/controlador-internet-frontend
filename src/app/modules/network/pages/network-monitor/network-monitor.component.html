@@ -1,0 +1,73 @@
+<h1 mat-dialog-title>MONITOREO DE RED</h1>
+
+<mat-dialog-content>
+  @if (isConnected()) {
+    <span class="badge online">● En Línea</span>
+  } @else {
+    <span class="badge offline">○ Desconectado</span>
+  }
+  
+  <div class="counter">
+    Equipos registrados por el servidor DHCP: {{ totalDevices() }}
+  </div>
+  
+  <table
+    mat-table
+    [dataSource]="devices()"
+    matSort
+    matSortDisableClear
+    matSortActive="deviceHostName"
+    matSortDirection="asc"
+  >
+    <tr mat-header-row *matHeaderRowDef="columns"></tr>
+    <tr mat-row *matRowDef="let row; columns: columns" class="fila-tabla"></tr>
+
+    <ng-container matColumnDef="ipAddress">
+      <th mat-header-cell *matHeaderCellDef>Dirección IP</th>
+      <td mat-cell *matCellDef="let device">
+        {{ device.ipAddress }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="macAddress">
+      <th mat-header-cell *matHeaderCellDef>Dirección MAC</th>
+      <td mat-cell *matCellDef="let device">
+        {{ device.macAddress }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="deviceHostname">
+      <th mat-header-cell *matHeaderCellDef>Equipo</th>
+      <td mat-cell *matCellDef="let device">
+        {{ device.deviceHostname }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>Acciones</th>
+      <td mat-cell *matCellDef="let device">
+        @if(!device.isRegistered){
+          <button
+            mat-icon-button
+            color="primary"
+            (click)="onConfirmSelectedDevice(device)"
+          >
+            <mat-icon>check</mat-icon>
+          </button>
+        } @else {
+          <span class="badge active">Registrado / Activo</span>
+        }
+      </td>
+    </ng-container>
+  </table>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button
+    mat-raised-button
+    (click)="onConfirmClose()"
+    cdkFocusInitial
+    class="boton-form-cancelar"
+  >
+    Cancelar
+  </button>
+</mat-dialog-actions>

@@ -15,6 +15,8 @@ export const MSG = {
   CONFIRM: {
     EXIT: '¿Estás seguro de que deseas salir del sistema?',
     CLOSE: '¿Está seguro de salir sin guardar los cambios?',
+    SELECT_DEVICE: '¿Está seguro de que desea seleciconar este equipo?',
+    NOT_SELECT_DEVICE: '¿Está seguro de que desea salir sin seleciconar un equipo?',
     DELETE: '¿Está seguro de eliminar este registro?',
     UPDATE: '¿Está seguro de guardar los cambios?',
     ADD: '¿Está seguro de agregar este registro?',

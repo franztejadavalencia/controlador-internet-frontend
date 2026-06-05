@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NetworkDetailForm } from './network-detail-form';
+import { NetworkMonitorComponent } from './network-monitor.component';
 
-describe('NetworkDetailForm', () => {
-  let component: NetworkDetailForm;
-  let fixture: ComponentFixture<NetworkDetailForm>;
+describe('NetworkMonitorComponent', () => {
+  let component: NetworkMonitorComponent;
+  let fixture: ComponentFixture<NetworkMonitorComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [NetworkDetailForm]
+      imports: [NetworkMonitorComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(NetworkDetailForm);
+    fixture = TestBed.createComponent(NetworkMonitorComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

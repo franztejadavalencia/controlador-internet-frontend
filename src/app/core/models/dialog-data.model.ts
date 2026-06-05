@@ -7,6 +7,7 @@ import { ClientType } from "./client-type.model";
 import { SubscriptionStatus } from "./subscription-status.model";
 import { Subscription } from "./subscription.model";
 import { DeviceType } from "./device-type.model";
+import { Device } from "./device.model";
 
 export interface OutPerson {
   person: Person;
@@ -61,4 +62,8 @@ export interface InNetworkDetails {
   networkDetail: NetworkDetail;
   subscriptions: Subscription[];
   deviceTypes: DeviceType[];
+}
+
+export interface OutNetworkMonitor {
+  device: Omit<Device, 'isRegistered'>;
 }
