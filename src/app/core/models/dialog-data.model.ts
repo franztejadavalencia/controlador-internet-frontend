@@ -67,3 +67,7 @@ export interface InNetworkDetails {
 export interface OutNetworkMonitor {
   device: Omit<Device, 'isRegistered'>;
 }
+
+export interface InClientPayment {
+  client: Client;
+}

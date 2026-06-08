@@ -64,6 +64,9 @@
     </th>
     <td mat-cell *matCellDef="let row">
       <div class="columna-acciones">
+        <button mat-icon-button (click)="openClientPaymentDialog(row)">
+          <mat-icon>list</mat-icon>
+        </button>
         <button mat-icon-button (click)="openClientDialog(row)">
           <mat-icon>edit</mat-icon>
         </button>

@@ -52,7 +52,7 @@
   <ng-container matColumnDef="expirationDate">
     <th mat-header-cell *matHeaderCellDef mat-sort-header>Fecha de expiración</th>
     <td mat-cell *matCellDef="let row" class="lighter">
-      {{ row.expirationDate }}
+      {{ row.expirationDate | date: 'dd/MM/yyyy' }}
     </td>
   </ng-container>
 

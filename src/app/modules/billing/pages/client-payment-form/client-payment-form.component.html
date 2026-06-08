@@ -1,0 +1,61 @@
+<h1 mat-dialog-title>HISTORIAL</h1>
+
+<mat-dialog-content class="content-form">
+  <table
+    mat-table
+    [dataSource]="clientPayments"
+    matSort
+    matSortDisableClear
+    matSortActive="deviceHostName"
+    matSortDirection="asc"
+  >
+    <tr mat-header-row *matHeaderRowDef="columns"></tr>
+    <tr mat-row *matRowDef="let row; columns: columns" class="fila-tabla"></tr>
+
+    <ng-container matColumnDef="subscriptionCode">
+      <th mat-header-cell *matHeaderCellDef>Subscripciones</th>
+      <td mat-cell *matCellDef="let device">
+        {{ device.subscriptionCode }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="expirationDate">
+      <th mat-header-cell *matHeaderCellDef>Fecha de expiración</th>
+      <td mat-cell *matCellDef="let device">
+        {{ device.expirationDate | date: 'dd/MM/yyyy' }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="paymentDate">
+      <th mat-header-cell *matHeaderCellDef>Fecha de pago</th>
+      <td mat-cell *matCellDef="let device">
+        {{ device.paymentDate | date: 'dd/MM/yyyy' }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="monthsPayed">
+      <th mat-header-cell *matHeaderCellDef>Meses pagados</th>
+      <td mat-cell *matCellDef="let device">
+        {{ device.monthsPayed }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="amount">
+      <th mat-header-cell *matHeaderCellDef>Monto total</th>
+      <td mat-cell *matCellDef="let device">
+        {{ device.amount }}
+      </td>
+    </ng-container>
+  </table>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button
+    mat-raised-button
+    (click)="onClose()"
+    cdkFocusInitial
+    class="boton-form-cancelar"
+  >
+    Cancelar
+  </button>
+  </mat-dialog-actions>

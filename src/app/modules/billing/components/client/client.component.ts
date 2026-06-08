@@ -24,6 +24,7 @@ import { PersonService } from '../../../../core/services/person.service';
 import { Person } from '../../../../core/models/person.model';
 import { ClientType } from '../../../../core/models/client-type.model';
 import { ClientTypeService } from '../../../../core/services/client-type.service';
+import { ClientPaymentFormComponent } from '../../pages/client-payment-form/client-payment-form.component';
 
 @Component({
   selector: 'app-client.component',
@@ -121,6 +122,17 @@ export class ClientComponent implements OnInit {
       if (result) {
         this.handleClientDialog(result as OutClient, client);
       }
+    });
+  }
+
+  openClientPaymentDialog(client: Client) {
+    const dialogRef = this.dialog.open(ClientPaymentFormComponent, {
+      disableClose: true,
+      data: {
+        client,
+        persons: this.persons,
+        clientTypes: this.clientTypes,
+      },
     });
   }
 

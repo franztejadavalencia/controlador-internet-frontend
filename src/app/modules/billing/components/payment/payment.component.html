@@ -1,1 +1,74 @@
-<p>payment.component works!</p>
+<div class="grid-dos">
+  <mat-toolbar class="mat-toolbar-title">
+    <div>
+      <h1>REGISTRAR UN PAGO</h1>
+    </div>
+  </mat-toolbar>
+  <div></div>
+
+  <app-autocomplete-object
+    [label]="'Subscripciones'"
+    [control]="subscriptionSelect"
+    [options]="subscriptions"
+    [displayWithFn]="displaySubscription"
+    [getIdFn]="getIdSubscription"
+    [idRequired]="true"
+    [hideSubText]="false"
+  />
+
+  <div></div>
+</div>
+
+@if (selectedSubscription) {
+  <br />
+  <div class="grid-dos" [formGroup]="formPayment">
+    <mat-form-field>
+      <mat-label>Fecha de expiración</mat-label>
+      <input matInput type="datetime-local" formControlName="expirationDate" />
+      <mat-icon matSuffix>calendar_today</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Plan</mat-label>
+      <input matInput formControlName="planName" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Velocidad de bajada (Kbps)</mat-label>
+      <input matInput type="number" formControlName="downloadSpeed" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Velocidad de subida (Kbps)</mat-label>
+      <input matInput type="number" formControlName="uploadSpeed" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Precio</mat-label>
+      <input matInput formControlName="price" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Código de cliente</mat-label>
+      <input matInput formControlName="clientCode" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Estado de suscripción</mat-label>
+      <input matInput formControlName="subscriptionStatusName" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Meses pagados</mat-label>
+      <input matInput type="number" min="1" step="1" formControlName="montsPayed" />
+    </mat-form-field>
+
+    <div></div>
+
+    <div class="grid-dos-full">
+      <button mat-raised-button (click)="onConfirmSave()" class="boton-form-aceptar">
+        Registrar pago
+      </button>
+    </div>
+  </div>
+}
